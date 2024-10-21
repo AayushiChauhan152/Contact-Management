@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user/base2 :: parent(~{::#content})}">
+<head>
+<meta charset="UTF-8" />
+<title data-th-text="${user.name}+'| SCM'">home</title>
+
+</head>
+<body>
+	<section id="content">
+	<div class="p-4">
+			<div class="grid grid-cols-12 mt-10 pt-10">
+				<div class="col-span-4 md:col-span-2 lg:col-span-3"></div>
+					<div class="col-span-12 md:col-span-8 lg:col-span-6">
+					
+					
+						<div class="block bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+							
+							
+							 <div class="text-center mt-10">
+				                <img th:src="@{'/images/contact.png'}" alt="profile-photo"
+				                     class="w-40 h-40 mx-auto rounded-full border-4 border-blue-500 dark:border-yellow-500 shadow-lg">
+				            </div>
+				
+				            <!-- Message -->
+				            <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-400 text-center mb-4 mt-8">
+				                Start Adding Your Contacts on the Cloud!
+				            </h1>
+				
+				            <!-- Add New Contact Button -->
+				            <div class="text-center mt-10 mb-10 pt-10">
+				                <a th:href="@{/user/add-contacts}"  class="bg-blue-600 dark:bg-yellow-500 text-white py-3 px-6 dark:text-gray-100 rounded-lg shadow-lg hover:bg-blue-700 dark:hover:bg-yellow-600 transition-all">
+				                    ADD NEW CONTACT
+				                </a>
+				            </div>
+											
+						</div>
+					</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+
+</html>

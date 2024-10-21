@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user/base2 :: parent(~{::#content})}">
+<head>
+<meta charset="UTF-8" />
+<title data-th-text="${user.name}+'| SCM'">home</title>
+
+</head>
+<body>
+	<section id="content" class="text-center flex items-center justify-center mt-10">
+		 <div class="bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 p-6 rounded-lg shadow-lg max-w-md w-full mt-10">
+        <!-- Profile Image -->
+	        <div class="flex justify-center mb-4">
+	            <img th:if="@{${user.imgUrl}}!=null" th:src="@{${user.imgUrl}}" class="w-32 h-32 rounded-full border-4 border-blue-500 dark:border-gray-700">	            
+	        </div>
+	
+	        <!-- User Details -->
+	        <div class="text-center">
+	            <h2 class="text-xl font-semibold text-gray-800 mb-2 dark:text-gray-400" th:text="${user.name}"></h2> <!-- Replace with {name} -->
+	            <p class="text-gray-600 mb-6 dark:text-white"><strong>User_Id:</strong><span class="ml-2 dark:text-gray-400" th:text="${user.id}"></span></p> <!-- Can be part of 'about' -->
+	
+	            <!-- Contact Details -->
+	            <div class="mb-2">
+	                <p class="text-gray-600 dark:text-white mb-2"><strong>Email:</strong> <span class="dark:text-gray-400" th:text="${user.email}"></span></p> <!-- Replace with {email} -->
+	                <p class="text-gray-600 dark:text-white " th:if="${user.phone}!=null"><strong>Phone:</strong> <span class="dark:text-gray-400" th:text="${user.phone}"></span></p> <!-- Replace with {phone} -->
+	            </div>
+	
+	            <!-- About Section -->
+	            <div class="mb-2">
+	                <p class="text-gray-600 dark:text-white"><strong>About:</strong> <span th:text="${user.about}" class="dark:text-gray-400"></span> </p> <!-- Replace with {about} -->
+	            </div>
+	
+	            <!-- Provider Details -->
+	            <div class="mb-2">
+	                <p class="text-gray-600 dark:text-white"><strong>Provider:</strong><span class="ml-2 dark:text-gray-400" th:text="${user.provider}"></span></p> <!-- Replace with {provider} -->
+	                <p class="text-gray-600 dark:text-white" th:if="${user.providerUserId}!=null"><strong>Provider User ID:</strong> <span th:text="${user.providerUserId}" class="dark:text-gray-400"></span></p> <!-- Replace with {providerUserId} -->
+	            </div>
+	            
+	            <div class="mb-2">
+	            	<p class="text-gray-600 dark:text-white"><strong>Email Verified:</strong><span class="ml-2 dark:text-gray-400" th:text="${user.emailVerified}" ></span></p> <!-- Replace with {provider} -->
+	                <p class="text-gray-600 dark:text-white" th:if="${user.providerUserId}!=null"><strong>Phone Number Verified:</strong> <span th:text="${user.phoneVerified}" class="dark:text-gray-400"></span></p>
+	            </div>
+	
+	        </div>
+	    </div>
+	</section>
+</body>
+
+
+</html>

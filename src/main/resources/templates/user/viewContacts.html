@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user/base2 :: parent(~{::#content})}">
+<head>
+<meta charset="UTF-8" />
+<title data-th-text="${user.name}+'| SCM'">home</title>
+
+</head>
+<body>
+	<section id="content">
+		<div class="p-8 text-center">
+		
+		<div class="mt-2" data-th-replace="~{message::messagebox}"></div>
+			
+
+			<h1 class="text-4xl">View Your Contacts</h1>
+			<p
+				class="font-normal text-gray-400 dark:text-gray-400 mt-1 text-center">
+				List of all contacts</p>
+
+			<div class="contacts-container p-8">
+
+				<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+				
+				<!-- search bar -->
+					<div class="flex p-5 items-center justify-between space-x-3 flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
+						<label for="table-search" class="sr-only">Search</label>
+						
+							<div class="relative">
+								<div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+									<svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+	                    				<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+	                				</svg>
+								</div>
+								<input type="text" id="search-input" onkeyup="search()" name="keyword" th:value="${keyword != null ? keyword : ''}"
+									class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+									placeholder="Search for contacts">
+						   </div>
+						   
+						   
+						   <button th:if="${total_elements > 0}" type="button" onclick="exportData()"
+								class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+								Export 
+							</button>
+					 </div>
+					
+					
+					<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" id="contact-table">
+						<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+							<tr>
+								<th scope="col" class="px-6 py-3">Name</th>
+								<th scope="col" class="px-6 py-3">Email</th>
+								<th scope="col" class="px-6 py-3">Phone Number</th>
+								<th scope="col" class="px-6 py-3">Action</th>
+								<th scope="col" class="px-6 py-3">Favourite</th>
+							</tr>
+						</thead>
+						
+						
+						<tbody>
+							<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" 
+								th:object="${contact}" th:each="contact : ${contacts}">
+								<td scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                    				<img class="w-10 h-10 rounded-full" th:src="@{*{profileImg}}" alt="image">
+					                    <div class="ps-3">
+					                        <div class="text-base " th:text="${contact.cname}"></div>
+					                    </div>  
+                				</td>
+                				
+								<td class="px-6 py-4" th:text="${contact.email}"></td>
+								
+								<td class="px-6 py-4" th:text="${contact.phone}"></td>
+								
+								<td class="px-6 py-4">
+								
+									<a th:href="@{'/user/delete/'+${contact.cid}}">
+										 <i class="fa-solid w-6 h-6 fa-trash"></i>
+									</a>
+									<a th:href="@{'/user/update/'+${contact.cid}}">
+										 <i class="fa-solid w-6 h-6 fa-pen"></i>
+									</a>
+									<button th:data-id="${contact.cid}" th:onclick="loadContact(this.getAttribute('data-id'))" data-modal-target="default-modal" data-modal-toggle="default-modal" type="button">
+									   <i class="fa-solid w-6 h-6 fa-eye"></i>
+									</button>
+									
+								</td>
+								
+								<td class="px-8 py-4">
+									<span th:if="${contact.fav==true}">
+										<i class="fa-solid w-6 h-6 fa-star"></i>
+									</span>
+									<span th:unless="${contact.fav==true}">
+										<i class="fa-regular w-6 h-6 fa-star"></i>
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+
+			<nav aria-label="Page navigation example" th:if="${total_elements > 5}">
+			  <ul class="inline-flex -space-x-px text-sm">
+			    
+			    <!-- Previous Link -->
+			    <li th:if="${cur_page != 0}">
+			      <a th:href="@{'/user/contacts/' + ${cur_page-1}}"
+			         th:if="${keyword == null}"
+			         class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+			        Previous
+			      </a>
+			      <a th:href="@{'/user/contacts/' + ${cur_page-1} + '?keyword=' + ${keyword}}"
+			         th:if="${keyword != null}"
+			         class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+			        Previous
+			      </a>
+			    </li>
+			
+			    <!-- Page Numbers -->
+			    <li th:each="i : ${#numbers.sequence(1, totol_page)}"
+			        th:classappend="${cur_page == i-1 ? 'bg-blue-50 dark:bg-gray-600' : 'bg-white dark:bg-gray-800'}">
+			      <a th:href="@{'/user/contacts/' + ${i-1}}"
+			         th:if="${keyword == null}"
+			         class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+			        <span th:text="${i}"></span>
+			      </a>
+			      <a th:href="@{'/user/contacts/' + ${i-1} + '?keyword=' + ${keyword}}"
+			         th:if="${keyword != null}"
+			         class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+			        <span th:text="${i}"></span>
+			      </a>
+			    </li>
+			
+			    <!-- Next Link -->
+			    <li th:if="${cur_page != totol_page-1}">
+			      <a th:href="@{'/user/contacts/' + ${cur_page+1}}"
+			         th:if="${keyword == null}"
+			         class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+			        Next
+			      </a>
+			      <a th:href="@{'/user/contacts/' + ${cur_page+1} + '?keyword=' + ${keyword}}"
+			         th:if="${keyword != null}"
+			         class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+			        Next
+			      </a>
+			    </li>
+			    
+			  </ul>
+			</nav>
+		</div>
+		
+		<div data-th-replace="~{user/contact_modal :: contact}"></div>
+		
+	</section>
+</body>
+
+</html>

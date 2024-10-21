@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user/base2 :: parent(~{::#content})}">
+<head>
+<meta charset="UTF-8" />
+<title data-th-text="${title}">home</title>
+
+</head>
+<body>
+	<section id="content">
+			
+			<div class="p-4">
+				<div class="grid grid-cols-12 mt-8">
+					<div class="col-span-4 md:col-span-2 lg:col-span-3"></div>
+						<div class="col-span-12 md:col-span-8 lg:col-span-6">
+						
+							<div class="mt-2 p-8" data-th-replace="~{message::messagebox}"></div>
+						
+							<div class="block bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+								
+								
+								<h1 class="text-2xl mt-5 text-center">Change your password</h1>
+								
+								<form class="mt-2 p-8 " method="post" th:action="@{/user/doSetting}">
+									
+									<div class="flex mb-3 justify-center">
+										<label for="oldpswd" class="mr-3 px-3 mt-1.5">Old Password</label>
+										<input type="password" id="oldpswd" class=" rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block text-sm border-gray-300  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+											placeholder="Enter Old Password" name="oldpswd">
+									</div>								
+									
+									<div class="flex mb-3 justify-center">
+										<label for="newpswd" class="mr-3 px-2.5 mt-1.5">New Password</label>
+										<input type="password" id="newpswd" class="rounded-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block text-sm border-gray-300  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+											placeholder="Enter New Password" name="newpswd" >
+									</div>
+									<div class="text-center mt-8">
+										<button type="submit" class="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 me-2 mb-2">
+											Submit
+										</button>
+										<button type="reset" class="text-white bg-[#FF9119] hover:bg-[#FF9119]/80  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#FF9119] dark:hover:bg-[#FF9119]/80">
+											Reset
+										</button>
+										
+									</div>
+								</form>
+							</div>
+						</div>
+				</div>
+		</div>
+	
+	</section>
+</body>
+
+
+</html>

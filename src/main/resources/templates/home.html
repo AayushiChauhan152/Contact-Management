@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base :: parent(~{::#content})}">
+<head>
+<meta charset="UTF-8" />
+<title data-th-text="${title}">home</title>
+
+</head>
+<body>
+	<section id="content">
+		<div class="mt-2 p-8" data-th-replace="~{message::messagebox}"></div>
+	
+		<div class="flex flex-col items-center justify-center mx-auto p-4 bg-blue-600 w-full" id="about">
+		
+			<h1 class="text-5xl text-white mt-10 text-center font-bold">Welcome to ContactVault</h1>
+			<p class="font-normal text-white pt-3">
+				Start managing contacts on cloud...
+			</p>
+			<a th:href="@{/signup}" type="button" class=" mt-8 mb-8 text-1.5xl text-blue-700 bg-white hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full px-6 py-3 text-center dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-blue-800">
+				Get Started
+			</a>
+		</div>
+		
+		
+		<div class="mt-10 p-8" id="services"> 
+		    <h2 class="text-center text-3xl font-bold mb-10">Features</h2>
+		    
+		    <!-- Centralized grid layout with auto margin and padding for equal spacing -->
+		    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+		    
+		        <!-- Feature 1 -->
+		        <div class="block mt-8 flex justify-center flex-col items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+		            <svg class="flex-shrink-0 w-8 h-8 text-blue-500 transition duration-75 dark:text-blue-400 group-hover:text-blue-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+		                <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
+		            </svg>
+		            <h5 class="mb-2 mt-8 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Easy Contact Management</h5>
+		            <p class="font-normal text-gray-700 dark:text-gray-400 text-center">Organize your contacts in a user-friendly interface.</p>
+		        </div>
+		        
+		        <!-- Feature 2 -->
+		        <div class="block mt-8 flex justify-center flex-col items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+		            <i class="fa fa-lock fa-2xl mt-4 text-blue-500 transition duration-75 dark:text-blue-400 group-hover:text-blue-900 dark:group-hover:text-white" aria-hidden="true"></i>
+		            <h5 class="mb-2 mt-8 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Secure Storage</h5>
+		            <p class="font-normal text-gray-700 dark:text-gray-400 text-center">Your data is protected with top-level encryption and security measures.</p>
+		        </div>
+		        
+		        <!-- Feature 3 -->
+		        <div class="block mt-8 flex justify-center flex-col items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+		            <i class="fa fa-globe fa-2xl mt-4 text-blue-500 transition duration-75 dark:text-blue-400 group-hover:text-blue-900 dark:group-hover:text-white" aria-hidden="true"></i>
+		            <h5 class="mb-2 mt-8 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">24/7 Access</h5>
+		            <p class="font-normal text-gray-700 dark:text-gray-400 text-center">Access your contacts anytime, anywhere from your device.</p>
+		        </div>
+		
+		    </div>
+		</div>
+
+		<div class="mt-10 flex flex-col items-center justify-center mx-auto p-4 bg-blue-600 w-full text-white"> 
+		    <h2 class="text-center text-3xl font-bold mt-10 ">Ready to Manage Your Contacts</h2>
+		    <p class="font-normal text-white pt-3">
+				Sign Up and start managing your contacts in an easiest way.
+			</p>
+			<a th:href="@{/signup}" type="button" class=" mt-8 mb-8 text-1.5xl text-blue-700 bg-white hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full px-6 py-3 text-center dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-blue-800">
+				Create an Account
+			</a>
+		</div>
+		
+		<div class="mt-10 p-8" id="contact"> 
+		    <h2 class="text-center text-3xl font-bold mb-10">Get In Touch</h2>
+		    <div class="grid grid-cols-12">
+				<div class="col-span-4 md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
+					<div class="col-span-12 md:col-span-8 lg:col-span-6 xl:col-span-4">
+				
+						<div class="mt-6 p-6 bg-white rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-blue-800 dark:hover:bg-gray-700">
+		
+							<form class="mt-5 " method="get" th:action="@{/send-feedback}">
+							
+								<div class="mb-5">
+								    <input type="text" name="name" placeholder="Your Name"
+								    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+								 </div>
+							  
+							 	<div class="mb-5">
+								    <input type="email"  name="email"  placeholder="Your email"
+								    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />							
+								</div>
+								
+								<div class="mb-5">
+	  								<textarea id="message" rows="4" name="message" placeholder="Your message" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+								</div>
+							  
+								<div class="mb-3 flex justify-center space-x-3">
+								 	<button type="submit" class="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-800">
+								 		Send Message
+								 	</button>								
+								</div>
+							</form>
+													
+						</div>
+					</div>
+				
+			</div>
+		</div>
+
+	</section>
+</body>
+
+</html>

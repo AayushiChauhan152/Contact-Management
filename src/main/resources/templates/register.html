@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base :: parent(~{::#content})}">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">signup</title>
+
+</head>
+<body>
+	<section id="content">
+
+		<div class="grid grid-cols-12">
+			<div class="col-span-4 md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
+			<div class="col-span-12 md:col-span-8 lg:col-span-6 xl:col-span-4">
+			
+				<div 
+					class="block mt-6 p-6 border-t-4 border-blue-800 bg-white rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-blue-800 dark:hover:bg-gray-700">
+
+					<!-- message here -->
+					<div data-th-replace="~{message::messagebox}"></div>
+					
+					<h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+						SignUp here
+					</h5>
+					<p class="font-normal text-gray-400 dark:text-gray-400">
+						Start managing contacts on cloud
+					</p>
+
+						<form class="mt-5 " th:action="@{/do-register}" method="post" th:object="${userForm}" novalidate>
+						
+						
+							<div class="mb-5">
+							    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+							    <input type="text" id="name" th:field="${userForm.name}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"name="name" required />
+								<p class="text-sm text-black-600 px-1 py-2">Username must be between 3-12 characters!!</p>
+							</div>
+						
+							<div class="mb-5">
+							    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+							    <input type="email" id="email" th:field="${userForm.email}"
+							    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" name="email" required />
+							 </div>
+						  
+						 	<div class="mb-5">
+							    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+							    <input type="password" id="password" name="password" th:field="${userForm.password}"
+							    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+							</div>
+							
+							<div class="mb-5">
+							    <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact Number</label>
+							    <input type="text" id="phone" name="phone" th:field="${userForm.phone}"
+							    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+								<p class="text-sm text-black-600 px-1 py-2">Phone Number must have only 10 digits!!</p>
+							
+							</div>
+							
+							<div class="mb-5">
+  								<label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">About</label>
+  								<textarea id="message" rows="4" name="about" th:field="${userForm.about}" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+							</div>
+						 
+						  
+							<div class="flex items-start mb-5">
+						    	<div class="flex items-center h-5">
+							      	<input id="terms" type="checkbox" value="" 
+							     	 class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+						    	</div>
+						    	<label for="terms" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <span class="text-blue-600 dark:text-blue-500">terms and conditions</span></label>
+								
+						  	</div>
+						  
+							<div class="mb-3 flex justify-center space-x-3">
+							 	<button type="submit" class="text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-800">Register</button>
+							 	<button type="reset" class="text-white bg-[#FF9119] hover:bg-[#FF9119]/80  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#FF9119] dark:hover:bg-[#FF9119]/80">Reset</button>
+								
+							</div>
+						</form>
+						
+						
+					</div>
+				</div>
+				
+			</div>
+
+	</section>
+</body>
+
+
+</html>
